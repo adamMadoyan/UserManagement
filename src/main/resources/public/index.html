@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+    <link th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.css}" rel="stylesheet" media="screen"/>
+</head>
+<body ng-app="UserManagement" ng-controller="main">
+
+<h1>Hello</h1>
+
+<div ui-view=""></div>
+
+
+<script src="/webjars/jquery/2.1.4/jquery.js"></script>
+<script src="/webjars/angularjs/1.4.0/angular.js"></script>
+<script src="/webjars/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+
+
+<script>
+    var UserManagement = UserManagement || {};
+</script>
+<!--App bootstrap js-->
+<script src="/js/app.js"></script>
+
+<!--App configs-->
+<script src="/js/config/namespaces.js"></script>
+<script src="/js/config/routProvider.js"></script>
+
+
+<!--App controllers-->
+<script src="/js/controllers/HomeCtrl.js"></script>
+<script src="/js/controllers/LoginCtrl.js"></script>
+<script src="/js/controllers/MainCtrl.js"></script>
+</body>
+</html>
