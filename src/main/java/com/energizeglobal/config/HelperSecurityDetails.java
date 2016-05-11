@@ -10,8 +10,8 @@ import static java.util.Arrays.asList;
 
 public class HelperSecurityDetails implements UserDetails {
 
-    public static final String ROLE_USER = "ROLE_USER";
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+    public static final String ROLE_USER = "USER";
+    public static final String ROLE_ADMIN = "ADMIN";
     private boolean enabled;
     private String userName;
     private String password;
@@ -28,7 +28,8 @@ public class HelperSecurityDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return asList(isAdmin ? new SimpleGrantedAuthority(ROLE_ADMIN) : new SimpleGrantedAuthority(ROLE_USER));
+//        return asList(isAdmin ? new SimpleGrantedAuthority(ROLE_ADMIN) : new SimpleGrantedAuthority(ROLE_USER));
+        return asList(new SimpleGrantedAuthority("USER"));
     }
 
     @Override

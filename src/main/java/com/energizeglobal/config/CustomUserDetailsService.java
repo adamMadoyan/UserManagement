@@ -25,6 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         } catch (EntityNotFoundException e) {
             throw new UsernameNotFoundException(String.format("User %s does not exist!", username));
         }
-        return new HelperSecurityDetails(user.getEmail(), user.getPassword(), true, Math.toIntExact(user.getId()), true);
+//        return new HelperSecurityDetails(user.getEmail(), user.getPassword(), true, Math.toIntExact(user.getId()), true);
+        return new HelperSecurityDetails("email", "password", true, 45, true);
     }
 }
