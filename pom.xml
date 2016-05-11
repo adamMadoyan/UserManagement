@@ -84,7 +84,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>angularjs</artifactId>
-            <version>1.4.0</version>
+            <version>1.5.5</version>
         </dependency>
 
         <dependency>
@@ -93,6 +93,12 @@
             <version>0.2.18</version>
         </dependency>
 
+        <!--Oauth2 dependency-->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-oauth2</artifactId>
+            <version>2.1.0</version>
+        </dependency>
 
         <!-- jquery dependency-->
         <dependency>

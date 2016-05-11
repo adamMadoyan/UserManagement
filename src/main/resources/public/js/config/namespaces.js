@@ -10,7 +10,7 @@ UserManagement.app.controllers = angular.module("UserManagement.app.controllers"
  * @namespace UserManagement.app.services
  * controller module of the app
  */
-UserManagement.app.fg = angular.module("UserManagement.app.services", []);
+UserManagement.app.services = angular.module("UserManagement.app.services", []);
 
 /**
  * @namespace UserManagement.app.directives
@@ -23,4 +23,10 @@ UserManagement.app.directives = angular.module("UserManagement.app.directives", 
  * controller module of the app
  */
 UserManagement.app.filters = angular.module("UserManagement.app.filters", []);
+//
+///**
+// * @namespace UserManagement.app.filters
+// * controller module of the app
+// */
+//UserManagement.app.constants = angular.module("UserManagement.app.constants", []);
 

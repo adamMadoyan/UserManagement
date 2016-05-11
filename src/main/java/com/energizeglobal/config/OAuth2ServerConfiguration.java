@@ -21,20 +21,12 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 public class OAuth2ServerConfiguration {
 
-    /**
-     * @var String RESOURCE_ID
-     */
+
     private static final String RESOURCE_ID = "restservice";
 
-    /**
-     * @var String CLIENT_APP
-     */
-    private static final String CLIENT_APP = "clientapp";
+    private static final String CLIENT_APP = "user_management";
 
-    /**
-     * @var String CLIENT_APP
-     */
-    private static final String APP_SECRET = "123456";
+    private static final String APP_SECRET = "8e43ecf6-57f4-4522-8f3e-08b22f356e7d";
 
     @Configuration
     @EnableResourceServer
@@ -50,7 +42,16 @@ public class OAuth2ServerConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/","/public/**", "/resources/**","/resources/public/**", "/partials/**", "/js/**", "/webjars/**")
+                    .antMatchers("/"
+                            ,
+                            "/public/**",
+                            "/resources/**",
+                            "/resources/public/**",
+                            "/partials/**",
+                            "/js/**",
+                            "/webjars/**",
+                            "/favicon.ico"
+                    )
                     .permitAll()
                     .anyRequest()
                     .authenticated();
