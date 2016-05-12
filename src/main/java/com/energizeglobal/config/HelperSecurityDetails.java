@@ -29,7 +29,7 @@ public class HelperSecurityDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 //        return asList(isAdmin ? new SimpleGrantedAuthority(ROLE_ADMIN) : new SimpleGrantedAuthority(ROLE_USER));
-        return asList(new SimpleGrantedAuthority("USER"));
+        return asList(new SimpleGrantedAuthority(ROLE_USER));
     }
 
     @Override

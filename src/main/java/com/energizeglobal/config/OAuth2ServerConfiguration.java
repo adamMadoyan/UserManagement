@@ -41,7 +41,9 @@ public class OAuth2ServerConfiguration {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
+            http
+                    .antMatcher("/**")
+                    .authorizeRequests()
                     .antMatchers("/"
                             ,
                             "/public/**",

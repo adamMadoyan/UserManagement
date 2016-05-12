@@ -22,7 +22,7 @@ UserManagement.app.constant('Config', {
             url: '/home',
             controller: 'home',
             templateUrl: "/partials/pages/home.html",
-            isAuth: false
+            isAuth: true
         }
     }
 });

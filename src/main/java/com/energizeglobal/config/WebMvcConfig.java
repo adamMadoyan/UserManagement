@@ -25,10 +25,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //    public void addViewControllers(ViewControllerRegistry registry) {
 //        registry.addViewController("/").setViewName("index.html");
 //    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+//    }
 
 }

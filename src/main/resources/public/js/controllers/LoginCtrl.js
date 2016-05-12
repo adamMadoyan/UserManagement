@@ -5,21 +5,26 @@
  */
 
 UserManagement.app.controllers.controller('login',
-    ['$scope', '$state', 'OauthService', 'Config',
-        function ($scope, $state, OauthService, Config) {
+    ['$scope', '$state', 'OauthService', 'Config', '$timeout',
+        function ($scope, $state, OauthService, Config, $timeout) {
 
-            $scope.user = {username : "username", password:'password'};
+            $scope.user = {username: "username", password: 'password'};
 
-            $scope.login = function() {
-                OauthService.getAccessToken($scope.user, function(promise) {
-                    //console.info(promise.status);
-                    //console.info(promise.value.data);
-                    //console.info(promise.value.status);
-                    //$state.go(Config.routes.home.name);
+            $scope.login = function () {
+                OauthService.getAccessToken($scope.user, function () {
+
+                    $timeout(function () {
+                        $scope.go()
+                    }, 3000);
+                    console.info("next");
+
                 });
             };
 
-            $scope.login();
+            $scope.go = function () {
+                console.info('state');
+                $state.go(Config.routes.home.name);
+            }
 
         }
     ]
