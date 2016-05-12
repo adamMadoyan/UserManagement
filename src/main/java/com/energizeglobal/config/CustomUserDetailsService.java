@@ -1,5 +1,6 @@
 package com.energizeglobal.config;
 
+import com.energizeglobal.exception.DatabaseException;
 import com.energizeglobal.model.User;
 import com.energizeglobal.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         try {
             user = userService.findByEmail(username);
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | DatabaseException e) {
             throw new UsernameNotFoundException(String.format("User %s does not exist!", username));
         }
-//        return new HelperSecurityDetails(user.getEmail(), user.getPassword(), true, Math.toIntExact(user.getId()), true);
-        return new HelperSecurityDetails("email", "password", true, 45, true);
+        return new HelperSecurityDetails(user.getEmail(), user.getPassword(), true, user.getId(), user.isAdmin());
     }
 }

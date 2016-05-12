@@ -3,12 +3,11 @@ package com.energizeglobal.model;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 /**
  * Company: WeDooApps
  * Date: 5/8/16
- * <p/>
+ * <p>
  * Created by Adam Madoyan.
  */
 
@@ -26,20 +25,23 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 128)
     private String lastName;
 
-    @Column(name = "email", unique = true, nullable = false, length = 255)
+    @Column(name = "email", unique = true, nullable = false)
     @Email
     private String email;
+
+    @Column(name = "admin", nullable = false)
+    private boolean isAdmin;
 
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, boolean isAdmin, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.isAdmin = isAdmin;
         this.password = password;
     }
 
@@ -75,6 +77,14 @@ public class User {
         this.email = email;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -83,32 +93,4 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("User{");
-        sb.append("id=").append(id);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

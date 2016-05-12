@@ -23,10 +23,4 @@ UserManagement.app.directives = angular.module("UserManagement.app.directives", 
  * controller module of the app
  */
 UserManagement.app.filters = angular.module("UserManagement.app.filters", []);
-//
-///**
-// * @namespace UserManagement.app.filters
-// * controller module of the app
-// */
-//UserManagement.app.constants = angular.module("UserManagement.app.constants", []);
 

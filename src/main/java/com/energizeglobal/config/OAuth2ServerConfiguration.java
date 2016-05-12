@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class OAuth2ServerConfiguration {
@@ -44,19 +45,30 @@ public class OAuth2ServerConfiguration {
             http
                     .antMatcher("/**")
                     .authorizeRequests()
-                    .antMatchers("/"
-                            ,
+                    .antMatchers("/",
                             "/public/**",
                             "/resources/**",
                             "/resources/public/**",
                             "/partials/**",
                             "/js/**",
                             "/webjars/**",
-                            "/favicon.ico"
+                            "/favicon.ico",
+                            "/users",
+                            "/users/exist/*",
+                            "/oauth/revoke-token"
                     )
                     .permitAll()
                     .anyRequest()
-                    .authenticated();
+                    .authenticated()
+                    .and()
+                    .logout()
+                    .logoutUrl("/oauth/revoke")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/oauth/revoke"))
+//                    .clearAuthentication(true)
+                    .deleteCookies("token")
+//                    .invalidateHttpSession(true)
+                    .permitAll()
+            ;
         }
     }
 

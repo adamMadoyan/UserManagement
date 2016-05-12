@@ -6,6 +6,7 @@ UserManagement.app.constant('Config', {
     CLIENT_ID: 'user_management',
     CLIENT_SECRET: '8e43ecf6-57f4-4522-8f3e-08b22f356e7d',
     GRANT_PATH: '/oauth/token',
+    REVOKE_TOKEN: '/oauth/revoke',
 
     routes: {
         login: {
@@ -23,6 +24,14 @@ UserManagement.app.constant('Config', {
             controller: 'home',
             templateUrl: "/partials/pages/home.html",
             isAuth: true
+        },
+        new: {
+            name: 'new',
+            title: 'new',
+            url: '/new',
+            controller: 'register',
+            templateUrl: "/partials/pages/register.html",
+            isAuth: false
         }
     }
 });

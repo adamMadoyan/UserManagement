@@ -8,7 +8,7 @@ import javax.persistence.EntityNotFoundException;
 /**
  * Company: WeDooApps
  * Date: 5/8/16
- * <p/>
+ * <p>
  * Created by Adam Madoyan.
  */
 public interface IUserService {
@@ -17,6 +17,8 @@ public interface IUserService {
 
     void add(User user) throws DatabaseException;
 
-    User findByEmail(String email) throws EntityNotFoundException;
+    User findByEmail(String email) throws EntityNotFoundException, DatabaseException;
+
+    boolean isEmailExist(String email) throws DatabaseException;
 
 }

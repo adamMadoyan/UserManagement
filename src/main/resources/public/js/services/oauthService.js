@@ -17,8 +17,9 @@ UserManagement.app.services.service('OauthService',
                 callback();
             };
 
-            this.removeToken = function () {
-                OAuthToken.removeToken();
+            this.logout = function (callback) {
+                OAuth.revokeToken();
+                callback();
             };
 
         }]);

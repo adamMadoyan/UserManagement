@@ -6,8 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Company: WeDooApps
  * Date: 5/8/16
- * <p/>
+ * <p>
  * Created by Adam Madoyan.
  */
 
-public interface UserRepository extends CrudRepository<User, Long> {}
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    User findByEmail(String email);
+
+}

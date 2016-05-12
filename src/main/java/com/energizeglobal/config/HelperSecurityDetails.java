@@ -15,10 +15,10 @@ public class HelperSecurityDetails implements UserDetails {
     private boolean enabled;
     private String userName;
     private String password;
-    private int customerId;
+    private Long customerId;
     private boolean isAdmin;
 
-    public HelperSecurityDetails(String userName, String password, boolean enabled, int customerId, boolean isAdmin) {
+    public HelperSecurityDetails(String userName, String password, boolean enabled, Long customerId, boolean isAdmin) {
         this.enabled = enabled;
         this.userName = userName;
         this.password = password;
@@ -28,8 +28,7 @@ public class HelperSecurityDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return asList(isAdmin ? new SimpleGrantedAuthority(ROLE_ADMIN) : new SimpleGrantedAuthority(ROLE_USER));
-        return asList(new SimpleGrantedAuthority(ROLE_USER));
+        return asList(isAdmin ? new SimpleGrantedAuthority(ROLE_ADMIN) : new SimpleGrantedAuthority(ROLE_USER));
     }
 
     @Override
@@ -57,7 +56,7 @@ public class HelperSecurityDetails implements UserDetails {
         return enabled;
     }
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
