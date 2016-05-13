@@ -15,7 +15,7 @@ import javax.persistence.EntityNotFoundException;
 /**
  * Company: WeDooApps
  * Date: 5/8/16
- * <p>
+ * <p/>
  * Created by Adam Madoyan.
  */
 
@@ -26,6 +26,8 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
     @Override
@@ -40,7 +42,7 @@ public class UserService implements IUserService {
 
     public void add(User user) throws DatabaseException {
         try {
-            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setPassword(encoder.encode(user.getPassword()));
             user.setIsAdmin(false);
             userRepository.save(user);
         } catch (RuntimeException e) {
@@ -56,6 +58,20 @@ public class UserService implements IUserService {
             if (user == null) {
                 throw new EntityNotFoundException("User not found");
             }
+            return user;
+        } catch (RuntimeException e) {
+            throw new DatabaseException("Unable to find user by email");
+        }
+    }
+
+    @Override
+    public User findByEmailAndPassword(String email, String password) throws EntityNotFoundException, DatabaseException {
+        try {
+            User user = userRepository.findByEmail(email);
+            if (user == null || !encoder.matches(password, user.getPassword())) {
+                throw new EntityNotFoundException("User not found");
+            }
+            user.setPassword(null);
             return user;
         } catch (RuntimeException e) {
             throw new DatabaseException("Unable to find user by email");

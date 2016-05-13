@@ -7,12 +7,16 @@ import com.energizeglobal.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 /**
  * Company: WeDooApps
  * Date: 5/8/16
- * <p>
+ * <p/>
  * Created by Adam Madoyan.
  */
 @RestController
@@ -36,7 +40,7 @@ public class UserController {
     public ResponseDTO isEmailExist(@PathVariable String email) {
         try {
             return userService.isEmailExist(email) ?
-                    new ResponseDTO(HttpStatus.OK) :
+                    new ResponseDTO(OK) :
                     new ResponseDTO(HttpStatus.NOT_FOUND);
         } catch (DatabaseException e) {
             return new ResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR, "error");
@@ -44,14 +48,26 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getUser(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<User> getUser(@PathVariable(value = "id") Long id) {
+        User user;
         try {
-            User user = userService.get(id);
-            System.out.println(user);
+            user = userService.get(id);
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            return new ResponseEntity<>(NOT_FOUND);
         }
-        return "home";
+        return new ResponseEntity<>(user, OK);
+    }
+
+    @RequestMapping(value = "/me", method = RequestMethod.POST)
+    public ResponseEntity<User> getUserByEmailPassword(@RequestParam(value = "email") String email,
+                                                       @RequestParam(value = "password") String password) {
+        User user;
+        try {
+            user = userService.findByEmailAndPassword(email, password);
+        } catch (Exception e) {
+            return new ResponseEntity<>(NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, OK);
     }
 
 

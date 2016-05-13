@@ -8,6 +8,8 @@ UserManagement.app.constant('Config', {
     GRANT_PATH: '/oauth/token',
     REVOKE_TOKEN: '/oauth/revoke',
 
+    USER_KEY : 'user',
+
     routes: {
         login: {
             name: 'login',

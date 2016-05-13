@@ -1,5 +1,6 @@
 package com.energizeglobal.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -33,6 +34,7 @@ public class User {
     private boolean isAdmin;
 
     @Column(name = "password", nullable = false, length = 255)
+    @JsonIgnore
     private String password;
 
     public User() {}

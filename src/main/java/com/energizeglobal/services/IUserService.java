@@ -19,6 +19,8 @@ public interface IUserService {
 
     User findByEmail(String email) throws EntityNotFoundException, DatabaseException;
 
+    User findByEmailAndPassword(String email, String password) throws EntityNotFoundException, DatabaseException;
+
     boolean isEmailExist(String email) throws DatabaseException;
 
 }

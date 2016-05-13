@@ -10,12 +10,11 @@ UserManagement.app.services.service('UserService',
                     url: Config.BASE_URL + '/users',
                     data: user,
                     headers: {'Content-Type': 'application/json'}
-                }).
-                    then(function (response) {
-                        callback(response);
-                    }, function (response) {
-                        callback(response);
-                    });
+                }).then(function (response) {
+                    callback(response);
+                }, function (response) {
+                    callback(response);
+                });
             };
 
             this.isEmailExist = function (email, callback) {
@@ -23,12 +22,32 @@ UserManagement.app.services.service('UserService',
                     method: 'POST',
                     url: Config.BASE_URL + '/users/exist/' + email,
                     headers: {'Content-Type': 'application/json'}
-                }).
-                    then(function (response) {
-                        callback(response);
-                    }, function (response) {
-                        callback(response);
-                    });
+                }).then(function (response) {
+                    callback(response);
+                }, function (response) {
+                    callback(response);
+                });
+            };
+
+            this.getUserByEmailPassword = function (email, password, callback) {
+                $http({
+                    method: 'POST',
+                    url: Config.BASE_URL + '/users/me',
+                    headers: {'Content-Type': 'application/json'},
+                    //headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    //headers: {'Content-Type': 'multipart/form-data'},
+                    params: {email: email, password: password},
+                    async: true
+                    //data: {email: email, password: password}
+                }).then(function (response) {
+                    if (response.hasOwnProperty('error')) {
+                        callback('error');
+                    } else {
+                        callback(response.data);
+                    }
+                }, function (response) {
+                    callback('error');
+                });
             }
 
         }
