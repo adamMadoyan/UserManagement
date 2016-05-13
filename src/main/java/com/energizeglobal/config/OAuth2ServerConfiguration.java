@@ -51,6 +51,7 @@ public class OAuth2ServerConfiguration {
                             "/resources/public/**",
                             "/partials/**",
                             "/js/**",
+                            "/css/**",
                             "/webjars/**",
                             "/favicon.ico",
                             "/users",
